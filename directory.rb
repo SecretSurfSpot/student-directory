@@ -5,6 +5,12 @@ def input_students
   students = []
   # get the first name
   name = gets.chomp
+  puts "Enter your cohort"
+  cohort = gets.chomp
+  if cohort.empty?
+    cohort = "default"
+  end
+  cohort = cohort.to_sym
   puts "Enter favorite hobby"
   hobby = gets.chomp
   puts "Enter country of birth"
@@ -14,13 +20,19 @@ def input_students
   # while the name is not empty, repeat this code
   while !name.empty? do
     # add the student hash to the array
-    students << {name: name, cohort: :november, hobby: hobby, country: country_of_birth, height: height}
+    students << {name: name, cohort: cohort.to_sym, hobby: hobby, country: country_of_birth, height: height}
     puts "Now we have #{students.count} students"
     #get another name from the user
     name = gets.chomp
     if name.empty?
       break
     end
+    puts "Enter your cohort"
+    cohort = gets.chomp
+    if cohort.empty?
+      cohort = "default"
+    end
+    cohort = cohort.to_sym
     puts "Enter favorite hobby"
     hobby = gets.chomp
     puts "Enter country of birth"
@@ -38,7 +50,7 @@ end
 def print(students)
   count = 0
   while count < students.length
-    puts "#{count+1}. #{students[count][:name]} #{students[count][:hobby]} #{students[count][:country]} #{students[count][:height]} (#{students[count][:cohort]} cohort)".center(100)
+    puts "#{count+1}. #{students[count][:name]} #{students[count][:hobby]} #{students[count][:country]} #{students[count][:height]} #{students[count][:cohort]}".center(100)
     count += 1
   end
 end
