@@ -111,4 +111,5 @@ def try_load_students
 end
 
 try_load_students
+load_students if @students.count == 0
 interactive_menu
