@@ -11,16 +11,11 @@ def input_students
     cohort = "default"
   end
   cohort = cohort.to_sym
-  puts "Enter favorite hobby"
-  hobby = gets.chomp
-  puts "Enter country of birth"
-  country_of_birth = gets.chomp
-  puts "Enter height"
-  height = gets.chomp
+
   # while the name is not empty, repeat this code
   while !name.empty? do
     # add the student hash to the array
-    students << {name: name, cohort: cohort.to_sym, hobby: hobby, country: country_of_birth, height: height}
+    students << {name: name, cohort: cohort.to_sym}
     puts "Now we have #{students.count} students"
     #get another name from the user
     name = gets.chomp
@@ -33,12 +28,6 @@ def input_students
       cohort = "default"
     end
     cohort = cohort.to_sym
-    puts "Enter favorite hobby"
-    hobby = gets.chomp
-    puts "Enter country of birth"
-    country_of_birth = gets.chomp
-    puts "Enter height"
-    height = gets.chomp
   end
   # return the array of students
   students
@@ -48,10 +37,12 @@ def print_header
   puts "------------"
 end
 def print(students)
-  count = 0
-  while count < students.length
-    puts "#{count+1}. #{students[count][:name]} #{students[count][:hobby]} #{students[count][:country]} #{students[count][:height]} #{students[count][:cohort]}".center(100)
-    count += 1
+  cohort_list = students.each.map{|person| person[:cohort]}.uniq
+  cohort_list.each do |cohort|
+    puts cohort
+    students.each do |student|
+      puts "#{student[:name]} (#{student[:cohort]} cohort)".center(50) if student[:cohort] == cohort
+    end
   end
 end
 def print_footer(names)
