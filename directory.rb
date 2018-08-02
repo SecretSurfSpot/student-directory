@@ -16,7 +16,8 @@ def input_students
   while !name.empty? do
     # add the student hash to the array
     students << {name: name, cohort: cohort.to_sym}
-    puts "Now we have #{students.count} students"
+    students.count == 1 ? num_of_students = "student" : num_of_students = "students"
+    puts "Now we have #{students.count} #{num_of_students}"
     #get another name from the user
     name = gets.chomp
     if name.empty?
