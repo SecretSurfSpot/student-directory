@@ -1,25 +1,28 @@
 @students = [] # an empty array available to all methods
-def print_menu
-  puts "1. Input the student"
-  puts "2. Show the students"
-  puts "9. Exit" # 9 because we'll be adding more items
-end
-def show_students
-  print_header
-  print_students_list
-  print_footer
-end
 def process(selection)
   case selection
     when "1"
       input_students
     when "2"
       show_students
+    when "3"
+      save_students
     when "9"
       exit # this will cause the program to terminate
     else
       puts "I don't know what you meant, try again"
   end
+end
+def show_students
+  print_header
+  print_students_list
+  print_footer
+end
+def print_menu
+  puts "1. Input the student"
+  puts "2. Show the students"
+  puts "3. Save the list to students.csv"
+  puts "9. Exit" # 9 because we'll be adding more items
 end
 def interactive_menu
   loop do
@@ -67,6 +70,17 @@ def print_students_list
 end
 def print_footer
   puts "Overall, we have #{@students.count} great students"
+end
+def save_students
+  # open file for writing
+  file = File.open("students.csv", "w")
+  # interate over the array of save_students
+  @students.each do |student|
+    student_data = [student[:name], student[:cohort]]
+    csv_line = student_data.join(",")
+    file.puts csv_line
+  end
+  file.close
 end
 
 interactive_menu
