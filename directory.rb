@@ -3,10 +3,13 @@ def input_students
   puts "To finish, just hit return twice"
   # create an empty array
   students = []
-  # get the first name
-  name = gets.chomp
+  # get the first name - use chop to remove any whitespace/newline
+  name = gets
+  name = name.chop
   puts "Enter your cohort"
-  cohort = gets.chomp
+  # get the cohort - use rsrip to remove any whitespace/newline
+  cohort = gets
+  cohort = cohort.rstrip
   if cohort.empty?
     cohort = "default"
   end
